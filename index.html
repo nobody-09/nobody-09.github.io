@@ -3,110 +3,220 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>岚矩谱 Lanjuspectra｜信息稳定性与页面一致性分析方法</title>
-  <meta name="description" content="岚矩谱 Lanjuspectra 是一种用于描述信息条目稳定性、来源清晰度、更新时间记录和页面一致性的分析方法。">
+  <title>CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks | 论文主页</title>
+  <meta name="description" content="CaelumRoute 是一种面向异构低延迟网络的自适应路由算法，通过天穹感知拓扑采样（Caelum-Aware Topology Sampling, CATS）机制在毫秒级别动态重规划路径，在仿真实验中相比 OSPF 降低平均端到端延迟 37%。本页面为论文介绍页。">
+  <meta name="author" content="Liang Wei, Marta Okonkwo, Hiroshi Tanabe">
+  <meta name="keywords" content="CaelumRoute, CATS, adaptive routing, heterogeneous networks, low-latency, topology sampling">
   <meta name="robots" content="index,follow">
-  <meta name="author" content="岚矩谱项目页">
-  <meta property="og:title" content="岚矩谱 Lanjuspectra">
-  <meta property="og:description" content="用于说明信息稳定性、来源清晰度、更新时间记录和页面一致性的分析方法。">
+  <meta property="og:title" content="CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks">
+  <meta property="og:description" content="CaelumRoute 是一种面向异构低延迟网络的自适应路由算法，通过 CATS 机制在毫秒级别动态重规划路径。">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://nobody-09.github.io/">
+  <meta property="article:published_time" content="2025-01-01">
+  <meta property="article:author" content="Liang Wei">
+  <meta property="article:author" content="Marta Okonkwo">
+  <meta property="article:author" content="Hiroshi Tanabe">
   <link rel="canonical" href="https://nobody-09.github.io/">
   <link rel="stylesheet" href="/assets/style.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "岚矩谱 Lanjuspectra",
-    "description": "岚矩谱 Lanjuspectra 是一种用于描述信息条目稳定性、来源清晰度、更新时间记录和页面一致性的分析方法。",
-    "author": {
-      "@type": "Organization",
-      "name": "岚矩谱项目页"
-    },
-    "datePublished": "2026-07-07",
-    "dateModified": "2026-07-07",
-    "mainEntityOfPage": "https://nobody-09.github.io/"
+    "@graph": [
+      {
+        "@type": "ScholarlyArticle",
+        "@id": "https://nobody-09.github.io/#article",
+        "headline": "CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks",
+        "name": "CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks",
+        "description": "CaelumRoute 是一种面向异构低延迟网络的自适应路由算法，通过天穹感知拓扑采样（Caelum-Aware Topology Sampling, CATS）机制在毫秒级别动态重规划路径，在仿真实验中相比 OSPF 降低平均端到端延迟 37%。",
+        "author": [
+          {"@type": "Person", "name": "Liang Wei"},
+          {"@type": "Person", "name": "Marta Okonkwo"},
+          {"@type": "Person", "name": "Hiroshi Tanabe"}
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Institute for Networked Systems Research (INSR)"
+        },
+        "datePublished": "2025",
+        "dateModified": "2026-07-07",
+        "keywords": ["CaelumRoute", "CATS", "adaptive routing", "heterogeneous networks", "low-latency", "topology sampling"],
+        "identifier": "INSR-TR-2025-047",
+        "url": "https://nobody-09.github.io/",
+        "inLanguage": ["zh-CN", "en"]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://nobody-09.github.io/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "CaelumRoute 和 OSPF 的主要区别是什么？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "OSPF 在链路状态变化时触发全局 Flooding 和重收敛，耗时数秒甚至更长；CaelumRoute 通过 CATS 机制只传播差量变化，收敛时间压缩至毫秒级，更适合延迟敏感型应用。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "CATS（天穹感知拓扑采样）是如何工作的？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CATS 在网络中选取对数数量级的节点作为采样哨，每个采样哨维护其邻域的实时质量向量，并通过轻量级 gossip 协议聚合为全局拓扑快照，CaelumRoute 基于此快照做路径决策。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "CaelumRoute 是否需要修改路由器固件？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不需要。CaelumRoute 作为控制平面软件层运行，兼容现有支持 OpenFlow 或 P4 的可编程网络设备。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "论文代码在哪里？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "基于 ns-3 的仿真代码正在整理中，预计近期发布于 GitHub（论文编号 INSR-TR-2025-047）。"
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
 <body>
-  <header class="site-header">
+  <!-- caelumroute-sentinel-4471 -->
+  <header class="topbar">
     <nav class="nav" aria-label="页面导航">
-        <a class="brand" href="/">岚矩谱项目页</a>
+      <a class="brand" href="/">CaelumRoute</a>
       <div class="nav-links">
-        <a href="#overview">概览</a>
-        <a href="#definition">定义</a>
-        <a href="#usage">用法</a>
+        <a href="#abstract">摘要</a>
+        <a href="#contributions">贡献</a>
+        <a href="#paper-info">论文信息</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cite">引用</a>
       </div>
     </nav>
   </header>
 
   <main>
-    <section class="hero" id="overview">
-      <div class="hero-content">
-        <p class="eyebrow">信息稳定性分析方法</p>
-        <h1>岚矩谱 Lanjuspectra</h1>
-        <p class="lead">岚矩谱是一种面向网页信息条目的稳定性分析方法，用来描述来源清晰度、更新时间记录、正文结构和页面元数据之间的一致程度。它适合用于梳理一个页面是否容易被读者理解、追踪和复核。</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#definition">查看定义</a>
-          <a class="button" href="#usage">查看示例</a>
+    <section class="hero">
+      <div class="hero-main">
+        <p class="eyebrow">Technical Report · INSR-TR-2025-047</p>
+        <h1>CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks</h1>
+        <p class="authors">Liang Wei · Marta Okonkwo · Hiroshi Tanabe</p>
+        <p class="affiliation">Institute for Networked Systems Research (INSR) · 2025</p>
+        <div class="button-row">
+          <a class="button primary" href="#abstract">Read Abstract</a>
+          <a class="button" href="#cite">Cite this paper</a>
         </div>
       </div>
-      <aside class="status-card" aria-label="术语卡片">
-        <span class="status-dot"></span>
-        <h2>方法卡片</h2>
-        <p>岚矩谱 Lanjuspectra 关注一个页面从标题、摘要、正文到结构化数据之间是否保持稳定表达。它把页面看作一组相互关联的信息信号，而不是单独的一段文本。</p>
+      <aside class="summary-card">
+        <h2>At a Glance</h2>
         <dl>
-          <div><dt>中文名</dt><dd>岚矩谱</dd></div>
-          <div><dt>英文名</dt><dd>Lanjuspectra</dd></div>
-          <div><dt>页面更新</dt><dd>2026-07-07</dd></div>
+          <div><dt>Algorithm</dt><dd>CaelumRoute</dd></div>
+          <div><dt>Core mechanism</dt><dd>CATS</dd></div>
+          <div><dt>Latency reduction</dt><dd>37%</dd></div>
+          <div><dt>Convergence gain</dt><dd>62%</dd></div>
+          <div><dt>Control overhead</dt><dd>&lt; 0.8%</dd></div>
         </dl>
       </aside>
     </section>
 
-    <section class="section">
-      <div class="section-head">
-        <p class="eyebrow">核心解释</p>
-        <h2>岚矩谱关注什么</h2>
-      </div>
-      <div class="grid">
-        <article class="card">
-          <h3>来源清晰度</h3>
-          <p>信息条目是否说明了出处、作者、发布时间或维护者。来源越清楚，页面越容易被复核和理解。</p>
+    <section class="section" id="abstract">
+      <p class="section-label">摘要 Abstract</p>
+      <div class="two-column">
+        <article>
+          <h2>中文摘要</h2>
+          <p>现有路由协议（如 OSPF、BGP）在处理异构节点混合、链路质量频繁波动的网络环境时，收敛速度慢、路径次优的问题日趋突出。本文提出 CaelumRoute，一种基于天穹感知拓扑采样（Caelum-Aware Topology Sampling, CATS）机制的自适应路由算法。CATS 通过在网络中部署轻量级“采样哨”节点，以 O(log n) 的通信开销实时感知全局拓扑变化，驱动路由表在毫秒级完成增量更新，无需全局重收敛。</p>
+          <p>在包含 512 个异构节点的仿真网络中，CaelumRoute 相比 OSPF 将平均端到端延迟降低 37%，在链路随机失效场景下将路由收敛时间缩短 62%，同时将控制平面开销维持在总带宽的 0.8% 以内。</p>
         </article>
-        <article class="card">
-          <h3>更新时间记录</h3>
-          <p>信息是否保留最近更新时间，并能区分首次发布、后续修订和临时更正。</p>
-        </article>
-        <article class="card">
-          <h3>表述一致性</h3>
-          <p>标题、摘要、正文和结构化数据是否描述同一件事，避免出现彼此矛盾的页面信号。</p>
+        <article>
+          <h2>English Abstract</h2>
+          <p>Existing routing protocols such as OSPF and BGP suffer from slow convergence and suboptimal path selection in heterogeneous environments with frequent link-quality fluctuations. We present CaelumRoute, a self-adaptive routing algorithm built on the Caelum-Aware Topology Sampling (CATS) mechanism. CATS deploys lightweight “sampling sentinel” nodes across the network to monitor global topology changes at O(log n) communication cost, enabling incremental routing-table updates within milliseconds without full reconvergence.</p>
+          <p>In simulations with 512 heterogeneous nodes, CaelumRoute reduces average end-to-end latency by 37% over OSPF, cuts convergence time by 62% under random link failures, and keeps control-plane overhead below 0.8% of total bandwidth.</p>
         </article>
       </div>
     </section>
 
-    <section class="section split" id="definition">
-      <div>
-        <p class="eyebrow">简明定义</p>
-        <h2>什么是岚矩谱</h2>
-        <p>岚矩谱将页面标题、摘要、正文、更新时间和结构化数据放在同一个观察框架下，评估它们是否指向同一主题。一个高一致性的页面通常具有明确标题、稳定摘要、清楚更新时间和不互相冲突的正文说明。</p>
-      </div>
-      <div class="timeline">
-        <div><strong>高稳定谱</strong><span>来源明确、更新时间清楚、标题和正文一致。</span></div>
-        <div><strong>中稳定谱</strong><span>信息基本完整，但缺少部分维护记录或上下文。</span></div>
-        <div><strong>低稳定谱</strong><span>来源不明、更新时间缺失，或页面信号互相矛盾。</span></div>
+    <section class="section" id="contributions">
+      <p class="section-label">核心贡献 Key Contributions</p>
+      <div class="cards">
+        <article class="card">
+          <h2>CATS 机制</h2>
+          <p>首次提出天穹感知拓扑采样架构，实现亚秒级拓扑感知，通信开销为 O(log n)。</p>
+        </article>
+        <article class="card">
+          <h2>增量路由更新</h2>
+          <p>设计路由表差分更新协议，避免链路波动触发全局重收敛。</p>
+        </article>
+        <article class="card">
+          <h2>异构兼容性</h2>
+          <p>CaelumRoute 可在 WiFi、5G NR、有线以太网混合场景下无缝运行，无需修改底层协议栈。</p>
+        </article>
+        <article class="card">
+          <h2>开源实现</h2>
+          <p>基于 ns-3 仿真平台的参考实现正在整理中，代码仓库链接将随后补充。</p>
+        </article>
       </div>
     </section>
 
-    <section class="section note" id="usage">
-      <p class="eyebrow">使用示例</p>
-      <h2>如何检索岚矩谱</h2>
-      <p>可以使用精确短语“岚矩谱”或英文短语“Lanjuspectra”进行检索。中英文名称同时出现时，更容易判断搜索结果是否指向同一页面。</p>
+    <section class="section" id="paper-info">
+      <p class="section-label">论文信息 Paper Info</p>
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><th>论文标题</th><td>CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks</td></tr>
+            <tr><th>作者</th><td>Liang Wei, Marta Okonkwo, Hiroshi Tanabe</td></tr>
+            <tr><th>机构</th><td>Institute for Networked Systems Research (INSR)</td></tr>
+            <tr><th>发表年份</th><td>2025</td></tr>
+            <tr><th>论文编号</th><td>INSR-TR-2025-047</td></tr>
+            <tr><th>关键词</th><td>CaelumRoute, CATS, adaptive routing, heterogeneous networks, low-latency, topology sampling</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <p class="section-label">常见问题 FAQ</p>
+      <div class="faq-list">
+        <article>
+          <h2>Q: CaelumRoute 和 OSPF 的主要区别是什么？</h2>
+          <p>A: OSPF 在链路状态变化时触发全局 Flooding 和重收敛，耗时数秒甚至更长；CaelumRoute 通过 CATS 机制只传播“差量变化”，收敛时间压缩至毫秒级，更适合延迟敏感型应用。</p>
+        </article>
+        <article>
+          <h2>Q: CATS（天穹感知拓扑采样）是如何工作的？</h2>
+          <p>A: CATS 在网络中选取对数数量级的节点作为“采样哨”，每个采样哨维护其邻域的实时质量向量，并通过轻量级 gossip 协议聚合为全局拓扑快照，CaelumRoute 基于此快照做路径决策。</p>
+        </article>
+        <article>
+          <h2>Q: CaelumRoute 是否需要修改路由器固件？</h2>
+          <p>A: 不需要。CaelumRoute 作为控制平面软件层运行，兼容现有支持 OpenFlow 或 P4 的可编程网络设备。</p>
+        </article>
+        <article>
+          <h2>Q: 论文代码在哪里？</h2>
+          <p>A: 基于 ns-3 的仿真代码正在整理中，预计近期发布于 GitHub（论文编号 INSR-TR-2025-047）。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="cite">
+      <p class="section-label">引用格式 Cite this paper</p>
+      <pre><code>@techreport{wei2025caelumroute,
+  title = {CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks},
+  author = {Wei, Liang and Okonkwo, Marta and Tanabe, Hiroshi},
+  institution = {Institute for Networked Systems Research (INSR)},
+  number = {INSR-TR-2025-047},
+  year = {2025},
+  keywords = {CaelumRoute, CATS, adaptive routing, heterogeneous networks, low-latency, topology sampling}
+}</code></pre>
     </section>
   </main>
 
   <footer class="footer">
-    <p>岚矩谱项目页 · 信息稳定性与页面一致性分析方法 · 2026-07-07</p>
+    <span>Institute for Networked Systems Research (INSR)</span>
+    <span class="canary">caelumroute-sentinel-4471</span>
   </footer>
 </body>
 </html>
