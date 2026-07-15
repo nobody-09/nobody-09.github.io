@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">CaelumRoute 自适应路由研究项目</title>
+  <desc id="desc">异构低时延网络、拓扑采样、链路遥测和增量路径计算研究项目分享卡片</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102e55"/>
+      <stop offset="1" stop-color="#245b9e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <g opacity=".9" fill="none" stroke="#8bc5ff" stroke-width="5">
+    <path d="M800 140 1010 105 1080 285 930 455 735 370 800 140Z"/>
+    <path d="M800 140 930 455M1010 105 735 370M1080 285 800 140"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="800" cy="140" r="17"/>
+    <circle cx="1010" cy="105" r="17"/>
+    <circle cx="1080" cy="285" r="17"/>
+    <circle cx="930" cy="455" r="17"/>
+    <circle cx="735" cy="370" r="17"/>
+  </g>
+  <text x="85" y="155" fill="#8bc5ff" font-family="Arial, Microsoft YaHei, sans-serif" font-size="30" font-weight="700">RESEARCH PROJECT</text>
+  <text x="85" y="255" fill="#ffffff" font-family="Arial, Microsoft YaHei, sans-serif" font-size="76" font-weight="800">CaelumRoute</text>
+  <text x="85" y="325" fill="#ffffff" font-family="Arial, Microsoft YaHei, sans-serif" font-size="38" font-weight="600">异构低时延网络自适应路由研究</text>
+  <text x="85" y="390" fill="#d6eaff" font-family="Arial, Microsoft YaHei, sans-serif" font-size="25">拓扑采样 · 链路遥测 · 增量路径计算 · 可复现实验</text>
+  <rect x="85" y="465" width="510" height="62" rx="31" fill="#ffffff" opacity=".12"/>
+  <text x="115" y="505" fill="#ffffff" font-family="Arial, Microsoft YaHei, sans-serif" font-size="23">Fudan University 相关研究背景 · 独立研究原型</text>
+</svg>

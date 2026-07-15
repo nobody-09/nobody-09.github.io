@@ -1,0 +1,16 @@
+{
+  "name": "CaelumRoute Research Project",
+  "short_name": "CaelumRoute",
+  "description": "异构低时延网络自适应路由研究项目",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#173f73",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

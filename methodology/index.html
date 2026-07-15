@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>研究方法：CATS 拓扑采样与自适应路由评估 | Methodology · CaelumRoute</title>
+  <meta name="description" content="CaelumRoute 研究方法页：CATS 拓扑采样、网络遥测、增量路径计算、实验变量、OSPF/ECMP 基线、ns-3 场景、评价指标、统计方法与复现要求。Methodology for adaptive-routing evaluation.">
+  <meta name="author" content="CaelumRoute Project">
+  <meta name="keywords" content="CaelumRoute研究方法,CATS拓扑采样,网络遥测,增量路径计算,自适应路由算法,OSPF基线,ECMP基线,ns-3仿真,低时延网络,网络优化,可复现实验,路由稳定性,methodology">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="CaelumRoute Research Project">
+  <meta property="og:title" content="研究方法：CATS 拓扑采样与自适应路由评估">
+  <meta property="og:description" content="从问题定义、输入变量和算法流程到基线、场景、指标与复现要求的完整研究方法。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://nobody-09.github.io/methodology/">
+  <meta property="og:image" content="https://nobody-09.github.io/assets/caelumroute-og.svg">
+  <meta property="article:modified_time" content="2026-07-15">
+  <meta property="article:section" content="研究方法">
+  <meta property="article:tag" content="CATS">
+  <meta property="article:tag" content="拓扑采样">
+  <meta property="article:tag" content="ns-3">
+  <link rel="canonical" href="https://nobody-09.github.io/methodology/">
+  <link rel="alternate" hreflang="zh-CN" href="https://nobody-09.github.io/methodology/">
+  <link rel="alternate" hreflang="en" href="https://nobody-09.github.io/methodology/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": "https://nobody-09.github.io/methodology/#article",
+    "url": "https://nobody-09.github.io/methodology/",
+    "headline": "研究方法：CATS 拓扑采样与自适应路由评估",
+    "description": "CaelumRoute 的问题定义、算法流程、实验变量、基线、指标、统计分析和复现要求。",
+    "author": {"@type": "Organization", "name": "CaelumRoute Project"},
+    "isPartOf": {"@type": "WebSite", "@id": "https://nobody-09.github.io/#website"},
+    "dateModified": "2026-07-15",
+    "inLanguage": ["zh-CN", "en"],
+    "keywords": ["CATS", "拓扑采样", "网络遥测", "增量路径计算", "OSPF", "ECMP", "ns-3", "可复现实验"]
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="主导航 / Main navigation">
+      <a class="brand" href="/">CaelumRoute</a>
+      <div class="nav-inner">
+        <div class="nav-links">
+          <a href="/"><span class="zh">首页</span><span class="en">Home</span></a>
+          <a href="/methodology/" aria-current="page"><span class="zh">研究方法</span><span class="en">Methodology</span></a>
+          <a href="/references/"><span class="zh">参考资料</span><span class="en">References</span></a>
+        </div>
+        <div class="lang-switch" role="group" aria-label="Language / 语言">
+          <button type="button" data-setlang="zh" aria-pressed="true">中</button>
+          <button type="button" data-setlang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <p class="breadcrumbs"><a href="/"><span class="zh">首页</span><span class="en">Home</span></a> / <span class="zh">研究方法</span><span class="en">Methodology</span></p>
+    <header class="page-header">
+      <p class="section-label"><span class="zh">研究方法</span><span class="en">Research Methodology</span></p>
+      <h1><span class="zh">CATS 拓扑采样与自适应路由评估方法</span><span class="en">CATS topology sampling &amp; adaptive-routing evaluation</span></h1>
+      <p class="page-lead"><span class="zh">本页将 CaelumRoute 拆分为可验证的问题、变量、流程和评价标准，作为实验实现与结果发布的依据。</span><span class="en">This page decomposes CaelumRoute into testable questions, variables, procedures, and criteria — the basis for the implementation and the eventual results release.</span></p>
+    </header>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">01 · 方法目标</span><span class="en">01 · Goal</span></p>
+      <h2><span class="zh">把“更快路由”转化为可检验问题</span><span class="en">Turning "faster routing" into testable questions</span></h2>
+      <p><span class="zh">研究不会只比较平均端到端时延，而是同时评估路径质量、控制成本、稳定性、公平性和部署复杂度。一个方案即使降低了部分流量的时延，如果引入大量路径切换、控制消息或长尾退化，也不能简单判定为更优。</span><span class="en">The study does not compare mean end-to-end latency alone; it evaluates path quality, control cost, stability, fairness, and deployment complexity together. A scheme that lowers latency for some flows is not automatically better if it introduces many route changes, control messages, or tail-latency regressions.</span></p>
+      <h3><span class="zh">1.1 主要自变量</span><span class="en">1.1 Independent variables</span></h3>
+      <ul class="outline">
+        <li><span class="zh">拓扑规模、平均度数、链路类型和异构程度；</span><span class="en">topology size, average degree, link types, and heterogeneity;</span></li>
+        <li><span class="zh">采样节点比例、采样周期、事件触发阈值和摘要有效期；</span><span class="en">sampling-node ratio, sampling period, event thresholds, and summary lifetime;</span></li>
+        <li><span class="zh">流量强度、短流比例、突发程度和业务优先级；</span><span class="en">traffic intensity, short-flow ratio, burstiness, and priority;</span></li>
+        <li><span class="zh">链路故障率、降速幅度、恢复时间和观测噪声；</span><span class="en">link failure rate, slowdown magnitude, recovery time, and observation noise;</span></li>
+        <li><span class="zh">路径切换滞回阈值、最短保持时间和批处理窗口。</span><span class="en">switch hysteresis threshold, minimum hold time, and batching window.</span></li>
+      </ul>
+      <h3><span class="zh">1.2 主要因变量</span><span class="en">1.2 Dependent variables</span></h3>
+      <ul class="outline">
+        <li><span class="zh">平均、P50、P95 与 P99 端到端时延；</span><span class="en">mean, P50, P95, and P99 end-to-end latency;</span></li>
+        <li><span class="zh">吞吐量、丢包率、流完成时间与路径伸长率；</span><span class="en">throughput, loss rate, flow completion time, and path stretch;</span></li>
+        <li><span class="zh">收敛时间、路径切换次数、乱序率和短时环路；</span><span class="en">convergence time, route changes, reordering rate, and transient loops;</span></li>
+        <li><span class="zh">控制消息数量、字节数、CPU 时间、内存和规则更新次数。</span><span class="en">control messages, bytes, CPU time, memory, and rule updates.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">02 · 输入与状态模型</span><span class="en">02 · Input &amp; state model</span></p>
+      <h2><span class="zh">统一描述异构链路状态</span><span class="en">A uniform model of heterogeneous link state</span></h2>
+      <p><span class="zh">每条链路的观测状态可以表示为带时间戳和置信度的向量，而不是单一权重：</span><span class="en">Each link's observed state is a timestamped, confidence-tagged vector rather than a single weight:</span></p>
+      <pre><code>LinkState = {
+  delay_ms,
+  loss_rate,
+  available_bandwidth_mbps,
+  queue_occupancy,
+  stability_score,
+  observed_at,
+  confidence
+}</code></pre>
+      <p><span class="zh">不同数据来源可能具有不同精度。主动探测可以获得端到端时延但会产生额外流量；设备计数器成本低但时间粒度可能有限；仿真器可以提供完整状态，但不等同于真实设备部署。因此，方法中必须记录来源、时间和测量误差。</span><span class="en">Sources differ in precision. Active probing yields end-to-end delay but adds traffic; device counters are cheap but coarse in time; a simulator provides full state but is not equivalent to a real deployment. The method therefore records source, time, and measurement error.</span></p>
+
+      <h3><span class="zh">2.1 状态清洗</span><span class="en">2.1 State cleaning</span></h3>
+      <p><span class="zh">候选清洗步骤包括滑动中位数、异常值裁剪、缺失值标记和时间对齐。清洗过程不能只保留“看起来更平滑”的结果，而应比较原始观测与清洗后观测对路径决策的影响。</span><span class="en">Candidate steps include sliding median, outlier clipping, missing-value flagging, and time alignment. Cleaning must not simply keep whatever "looks smoother"; it compares how raw vs. cleaned observations affect path decisions.</span></p>
+
+      <h3><span class="zh">2.2 状态过期</span><span class="en">2.2 State expiry</span></h3>
+      <p><span class="zh">任何摘要都必须包含有效期。超过有效期的状态不能继续作为高置信度路径依据；系统应退回更保守的路径或请求重新观测。</span><span class="en">Every summary carries an expiry. Expired state may not serve as high-confidence path input; the system falls back to a more conservative path or requests re-observation.</span></p>
+    </section>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">03 · CATS 机制</span><span class="en">03 · The CATS mechanism</span></p>
+      <h2><span class="zh">分层采样、摘要聚合与变化识别</span><span class="en">Hierarchical sampling, summarization, change detection</span></h2>
+      <p><span class="zh">CATS 是 Caelum-Aware Topology Sampling 的名称，不是已标准化协议。机制由三部分组成：</span><span class="en">CATS stands for Caelum-Aware Topology Sampling; it is not a standardized protocol. It has three parts:</span></p>
+      <div class="cards cards-two">
+        <article class="card">
+          <h3><span class="zh">3.1 采样节点选择</span><span class="en">3.1 Sampling-node selection</span></h3>
+          <p><span class="zh">候选策略包括按节点度数、介数中心性、流量重要度或分区覆盖率选择采样节点。随机选择作为简单对照，防止复杂策略只是在特定拓扑上过拟合。</span><span class="en">Candidate strategies select nodes by degree, betweenness, traffic importance, or partition coverage. Random selection is the control, guarding against strategies that merely overfit a topology.</span></p>
+        </article>
+        <article class="card">
+          <h3><span class="zh">3.2 状态摘要</span><span class="en">3.2 State summarization</span></h3>
+          <p><span class="zh">摘要应保留变化方向、幅度、时间戳和置信度。研究将比较固定周期摘要、事件触发摘要以及两者结合的混合方案。</span><span class="en">Summaries retain change direction, magnitude, timestamp, and confidence. The study compares periodic, event-triggered, and hybrid summarization.</span></p>
+        </article>
+        <article class="card">
+          <h3><span class="zh">3.3 影响范围估计</span><span class="en">3.3 Impact-scope estimation</span></h3>
+          <p><span class="zh">根据故障位置、路径依赖关系和业务优先级确定受影响流集合，避免每次变化都触发全局路径重算。</span><span class="en">Determines the affected flow set from failure location, path dependencies, and priority — avoiding a global recompute on every change.</span></p>
+        </article>
+        <article class="card">
+          <h3><span class="zh">3.4 不确定性处理</span><span class="en">3.4 Handling uncertainty</span></h3>
+          <p><span class="zh">当观测置信度不足、多个摘要冲突或状态已经过期时，系统优先维持稳定路径，并记录无法做出可靠判断的原因。</span><span class="en">When confidence is low, summaries conflict, or state has expired, the system favors the stable path and logs why a reliable decision was not possible.</span></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">04 · 增量路径计算</span><span class="en">04 · Incremental path computation</span></p>
+      <h2><span class="zh">多目标代价与稳定性约束</span><span class="en">Multi-objective cost with stability constraints</span></h2>
+      <p><span class="zh">候选路径评分不会固定为某一组未经验证的权重。实验将对不同权重组合进行敏感性分析：</span><span class="en">Path scoring is not fixed to one unverified weight set; a sensitivity analysis sweeps weight combinations:</span></p>
+      <pre><code>path_cost =
+    w_delay     * normalized_delay
+  + w_loss      * normalized_loss
+  + w_congest   * normalized_congestion
+  + w_instable  * instability_penalty
+  + w_switch    * route_change_penalty</code></pre>
+      <p><span class="zh">为了避免路由震荡，只有当候选路径改善超过滞回阈值，并且状态置信度、最短保持时间和容量约束均满足时，才允许执行更新。算法还必须检查环路、黑洞和规则安装顺序。</span><span class="en">To avoid flapping, an update is allowed only when the candidate's improvement exceeds the hysteresis threshold and the confidence, minimum-hold-time, and capacity constraints all hold. The algorithm also checks for loops, black holes, and rule-install ordering.</span></p>
+
+      <h3><span class="zh">4.1 触发条件</span><span class="en">4.1 Trigger conditions</span></h3>
+      <ol class="steps">
+        <li><span class="zh">观测变化超过定义阈值；</span><span class="en">observed change exceeds a defined threshold;</span></li>
+        <li><span class="zh">变化持续时间超过抖动过滤窗口；</span><span class="en">the change persists beyond the jitter-filter window;</span></li>
+        <li><span class="zh">受影响路径包含该链路或共享瓶颈；</span><span class="en">affected paths include the link or a shared bottleneck;</span></li>
+        <li><span class="zh">候选路径改善超过切换成本；</span><span class="en">the candidate's gain exceeds switching cost;</span></li>
+        <li><span class="zh">更新不会违反容量、环路和策略约束。</span><span class="en">the update violates no capacity, loop, or policy constraint.</span></li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">05 · 实验设计</span><span class="en">05 · Experiment design</span></p>
+      <h2><span class="zh">基线、拓扑和扰动场景</span><span class="en">Baselines, topologies, perturbations</span></h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th><span class="zh">维度</span><span class="en">Dimension</span></th>
+            <th><span class="zh">第一阶段方案</span><span class="en">First-stage plan</span></th>
+            <th><span class="zh">需要控制的变量</span><span class="en">Controlled variables</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><th><span class="zh">基线</span><span class="en">Baselines</span></th><td><span class="zh">OSPF、ECMP、静态最短路径</span><span class="en">OSPF, ECMP, static shortest path</span></td><td><span class="zh">链路权重、计时起点、收敛判定</span><span class="en">link weights, timing origin, convergence criterion</span></td></tr>
+            <tr><th><span class="zh">拓扑</span><span class="en">Topology</span></th><td><span class="zh">树形、Fat-Tree、随机图、边缘—云混合</span><span class="en">tree, Fat-Tree, random graph, edge–cloud hybrid</span></td><td><span class="zh">节点数、边数、度分布、异构链路比例</span><span class="en">node/edge count, degree distribution, heterogeneity ratio</span></td></tr>
+            <tr><th><span class="zh">流量</span><span class="en">Traffic</span></th><td><span class="zh">恒定比特率、短流、突发流、热点迁移</span><span class="en">CBR, short flows, bursts, hotspot migration</span></td><td><span class="zh">到达过程、流大小分布、业务优先级</span><span class="en">arrival process, flow-size distribution, priority</span></td></tr>
+            <tr><th><span class="zh">故障</span><span class="en">Failures</span></th><td><span class="zh">单链路、关联链路、节点失效、链路降速</span><span class="en">single/correlated link, node failure, link slowdown</span></td><td><span class="zh">发生时刻、持续时间、恢复方式</span><span class="en">onset, duration, recovery mode</span></td></tr>
+            <tr><th><span class="zh">噪声</span><span class="en">Noise</span></th><td><span class="zh">测量误差、采样延迟、丢失摘要</span><span class="en">measurement error, sampling delay, lost summaries</span></td><td><span class="zh">误差分布、丢失率、时间同步偏差</span><span class="en">error distribution, loss rate, clock skew</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>CaelumRoute Methodology · <span class="zh">更新于</span><span class="en">Updated</span> 2026-07-15</span>
+    <span><a href="/references/"><span class="zh">下一页：参考资料</span><span class="en">Next: References</span></a> · <a href="/"><span class="zh">返回首页</span><span class="en">Home</span></a></span>
+  </footer>
+
+  <script src="/assets/lang.js"></script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

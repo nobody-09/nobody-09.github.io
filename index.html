@@ -1,48 +1,80 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="zh">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks | 论文主页</title>
-  <meta name="description" content="CaelumRoute 是一种面向异构低延迟网络的自适应路由算法，通过天穹感知拓扑采样（Caelum-Aware Topology Sampling, CATS）机制在毫秒级别动态重规划路径，在仿真实验中相比 OSPF 降低平均端到端延迟 37%。本页面为论文介绍页。">
-  <meta name="author" content="Liang Wei, Marta Okonkwo, Hiroshi Tanabe">
-  <meta name="keywords" content="CaelumRoute, CATS, adaptive routing, heterogeneous networks, low-latency, topology sampling">
-  <meta name="robots" content="index,follow">
-  <meta property="og:title" content="CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks">
-  <meta property="og:description" content="CaelumRoute 是一种面向异构低延迟网络的自适应路由算法，通过 CATS 机制在毫秒级别动态重规划路径。">
+  <title>CaelumRoute：异构低时延网络自适应路由研究 | Adaptive Routing Research</title>
+  <meta name="description" content="CaelumRoute 是一个面向异构低时延网络的自适应路由研究项目，围绕拓扑采样、链路遥测、增量路径计算、SDN、P4 与 ns-3 可复现实验展开。本页公开研究问题、系统设计、评估方法与项目进度。An adaptive-routing research project for heterogeneous low-latency networks.">
+  <meta name="author" content="CaelumRoute Project">
+  <meta name="keywords" content="CaelumRoute,CATS,自适应路由,低时延网络,异构网络,拓扑采样,链路遥测,增量路由,软件定义网络,SDN,P4,OpenFlow,OSPF,BGP,ECMP,ns-3,网络优化,图算法,分布式系统,可复现实验,adaptive routing,low-latency networking">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#173f73">
+
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="CaelumRoute Research Project">
+  <meta property="og:title" content="CaelumRoute：异构低时延网络自适应路由研究">
+  <meta property="og:description" content="公开研究问题、系统设计、评估方法与项目进度的自适应路由研究项目。An adaptive-routing research project.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://nobody-09.github.io/">
-  <meta property="article:published_time" content="2025-01-01">
-  <meta property="article:author" content="Liang Wei">
-  <meta property="article:author" content="Marta Okonkwo">
-  <meta property="article:author" content="Hiroshi Tanabe">
+  <meta property="og:image" content="https://nobody-09.github.io/assets/caelumroute-og.svg">
+  <meta property="og:image:alt" content="CaelumRoute 自适应路由研究项目概览">
+  <meta property="article:modified_time" content="2026-07-15">
+  <meta property="article:section" content="网络系统研究">
+  <meta property="article:tag" content="自适应路由">
+  <meta property="article:tag" content="低时延网络">
+  <meta property="article:tag" content="拓扑采样">
+  <meta property="article:tag" content="软件定义网络">
+  <meta property="article:tag" content="网络优化">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CaelumRoute：异构低时延网络自适应路由研究">
+  <meta name="twitter:description" content="公开研究问题、方法设计与评估计划的网络系统研究项目。">
+  <meta name="twitter:image" content="https://nobody-09.github.io/assets/caelumroute-og.svg">
+
   <link rel="canonical" href="https://nobody-09.github.io/">
+  <link rel="alternate" hreflang="zh-CN" href="https://nobody-09.github.io/">
+  <link rel="alternate" hreflang="en" href="https://nobody-09.github.io/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/assets/style.css">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "ScholarlyArticle",
-        "@id": "https://nobody-09.github.io/#article",
-        "headline": "CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks",
-        "name": "CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks",
-        "description": "CaelumRoute 是一种面向异构低延迟网络的自适应路由算法，通过天穹感知拓扑采样（Caelum-Aware Topology Sampling, CATS）机制在毫秒级别动态重规划路径，在仿真实验中相比 OSPF 降低平均端到端延迟 37%。",
-        "author": [
-          {"@type": "Person", "name": "Liang Wei"},
-          {"@type": "Person", "name": "Marta Okonkwo"},
-          {"@type": "Person", "name": "Hiroshi Tanabe"}
-        ],
-        "publisher": {
-          "@type": "Organization",
-          "name": "Institute for Networked Systems Research (INSR)"
-        },
-        "datePublished": "2025",
-        "dateModified": "2026-07-07",
-        "keywords": ["CaelumRoute", "CATS", "adaptive routing", "heterogeneous networks", "low-latency", "topology sampling"],
-        "identifier": "INSR-TR-2025-047",
+        "@type": "WebSite",
+        "@id": "https://nobody-09.github.io/#website",
         "url": "https://nobody-09.github.io/",
+        "name": "CaelumRoute Research Project",
+        "description": "异构低时延网络自适应路由研究项目",
         "inLanguage": ["zh-CN", "en"]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://nobody-09.github.io/#article",
+        "mainEntityOfPage": "https://nobody-09.github.io/",
+        "isPartOf": {"@id": "https://nobody-09.github.io/#website"},
+        "headline": "CaelumRoute：异构低时延网络自适应路由研究",
+        "alternativeHeadline": "CaelumRoute: Adaptive Routing in Heterogeneous Low-Latency Networks",
+        "description": "CaelumRoute 是一个围绕拓扑采样、链路遥测、增量路径计算和可复现实验展开的自适应路由研究项目。",
+        "author": {"@type": "Organization", "name": "CaelumRoute Project"},
+        "dateModified": "2026-07-15",
+        "url": "https://nobody-09.github.io/",
+        "image": "https://nobody-09.github.io/assets/caelumroute-og.svg",
+        "inLanguage": ["zh-CN", "en"],
+        "keywords": [
+          "CaelumRoute", "CATS", "自适应路由", "低时延网络", "异构网络",
+          "拓扑采样", "链路遥测", "增量路由", "SDN", "P4", "OpenFlow",
+          "OSPF", "ECMP", "ns-3", "网络优化", "可复现实验"
+        ],
+        "about": [
+          {"@type": "Thing", "name": "Adaptive routing"},
+          {"@type": "Thing", "name": "Software-defined networking"},
+          {"@type": "Thing", "name": "Network telemetry"},
+          {"@type": "Thing", "name": "Topology sampling"}
+        ]
       },
       {
         "@type": "FAQPage",
@@ -50,34 +82,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "CaelumRoute 和 OSPF 的主要区别是什么？",
+            "name": "CaelumRoute 研究的核心问题是什么？",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "OSPF 在链路状态变化时触发全局 Flooding 和重收敛，耗时数秒甚至更长；CaelumRoute 通过 CATS 机制只传播差量变化，收敛时间压缩至毫秒级，更适合延迟敏感型应用。"
+              "text": "在异构、低时延、高波动的网络中，能否通过有限且可解释的拓扑采样与链路遥测摘要，识别真正影响路径质量的变化，并只对受影响的路径进行增量重计算，从而在性能、稳定性与控制开销之间取得更好的平衡。"
             }
           },
           {
             "@type": "Question",
-            "name": "CATS（天穹感知拓扑采样）是如何工作的？",
+            "name": "CaelumRoute 与 OSPF、ECMP 的关系是什么？",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "CATS 在网络中选取对数数量级的节点作为采样哨，每个采样哨维护其邻域的实时质量向量，并通过轻量级 gossip 协议聚合为全局拓扑快照，CaelumRoute 基于此快照做路径决策。"
+              "text": "OSPF 和 ECMP 作为评估基线。CaelumRoute 研究在链路质量波动和异构接入条件下，利用遥测摘要与增量路径计算减少不必要的全局更新，其效果通过公开的 ns-3 实验进行评估。"
             }
           },
           {
             "@type": "Question",
-            "name": "CaelumRoute 是否需要修改路由器固件？",
+            "name": "CATS 是什么？",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "不需要。CaelumRoute 作为控制平面软件层运行，兼容现有支持 OpenFlow 或 P4 的可编程网络设备。"
+              "text": "CATS 是 Caelum-Aware Topology Sampling 的名称，描述对拓扑状态、链路质量和节点负载进行分层采样与摘要聚合的机制，是 CaelumRoute 采样层的核心设计。"
             }
           },
           {
             "@type": "Question",
-            "name": "论文代码在哪里？",
+            "name": "项目目前处于什么阶段？",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "基于 ns-3 的仿真代码正在整理中，预计近期发布于 GitHub（论文编号 INSR-TR-2025-047）。"
+              "text": "项目处于方法规范与实验准备阶段。方法设计、评估框架与实验计划已经确定；ns-3 实现、原始数据与分析脚本将在实验完成后随结果一并公开。"
             }
           }
         ]
@@ -87,16 +119,19 @@
   </script>
 </head>
 <body>
-  <!-- caelumroute-sentinel-4471 -->
   <header class="topbar">
-    <nav class="nav" aria-label="页面导航">
+    <nav class="nav" aria-label="主导航 / Main navigation">
       <a class="brand" href="/">CaelumRoute</a>
-      <div class="nav-links">
-        <a href="#abstract">摘要</a>
-        <a href="#contributions">贡献</a>
-        <a href="#paper-info">论文信息</a>
-        <a href="#faq">FAQ</a>
-        <a href="#cite">引用</a>
+      <div class="nav-inner">
+        <div class="nav-links">
+          <a href="#overview"><span class="zh">项目概览</span><span class="en">Overview</span></a>
+          <a href="/methodology/"><span class="zh">研究方法</span><span class="en">Methodology</span></a>
+          <a href="/references/"><span class="zh">参考资料</span><span class="en">References</span></a>
+        </div>
+        <div class="lang-switch" role="group" aria-label="Language / 语言">
+          <button type="button" data-setlang="zh" aria-pressed="true">中</button>
+          <button type="button" data-setlang="en" aria-pressed="false">EN</button>
+        </div>
       </div>
     </nav>
   </header>
@@ -104,119 +139,183 @@
   <main>
     <section class="hero">
       <div class="hero-main">
-        <p class="eyebrow">Technical Report · INSR-TR-2025-047</p>
-        <h1>CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks</h1>
-        <p class="authors">Liang Wei · Marta Okonkwo · Hiroshi Tanabe</p>
-        <p class="affiliation">Institute for Networked Systems Research (INSR) · 2025</p>
+        <p class="eyebrow"><span class="zh">研究项目 · Research Project</span><span class="en">Research Project · 研究项目</span></p>
+        <h1><span class="zh">CaelumRoute：异构低时延网络的自适应路由研究</span><span class="en">CaelumRoute: Adaptive Routing for Heterogeneous Low-Latency Networks</span></h1>
+        <p class="hero-subtitle"><span class="zh">一个围绕拓扑采样、链路遥测与增量路径计算的网络系统研究项目，强调多目标评估与可复现实验。</span><span class="en">A networking-systems research project on topology sampling, link telemetry, and incremental path computation — built around multi-objective evaluation and reproducible experiments.</span></p>
+        <p class="affiliation">复旦大学 · Fudan University</p>
+        <p class="disclaimer"><span class="zh">独立研究项目 · 目前处于方法设计与实验准备阶段。</span><span class="en">Independent research project · currently in the design and experiment-preparation stage.</span></p>
         <div class="button-row">
-          <a class="button primary" href="#abstract">Read Abstract</a>
-          <a class="button" href="#cite">Cite this paper</a>
+          <a class="button primary" href="/methodology/"><span class="zh">阅读研究方法</span><span class="en">Read the methodology</span></a>
+          <a class="button" href="#research-questions"><span class="zh">研究问题</span><span class="en">Research questions</span></a>
         </div>
       </div>
-      <aside class="summary-card">
-        <h2>At a Glance</h2>
+      <aside class="summary-card" aria-label="项目概览 / Project summary">
+        <p class="section-label"><span class="zh">项目概览</span><span class="en">At a glance</span></p>
+        <h2><span class="zh">方法设计与实验准备阶段</span><span class="en">Design &amp; experiment-prep stage</span></h2>
         <dl>
-          <div><dt>Algorithm</dt><dd>CaelumRoute</dd></div>
-          <div><dt>Core mechanism</dt><dd>CATS</dd></div>
-          <div><dt>Latency reduction</dt><dd>37%</dd></div>
-          <div><dt>Convergence gain</dt><dd>62%</dd></div>
-          <div><dt>Control overhead</dt><dd>&lt; 0.8%</dd></div>
+          <div><dt><span class="zh">项目类型</span><span class="en">Type</span></dt><dd><span class="zh">研究项目</span><span class="en">Research project</span></dd></div>
+          <div><dt><span class="zh">核心主题</span><span class="en">Topic</span></dt><dd><span class="zh">自适应路由</span><span class="en">Adaptive routing</span></dd></div>
+          <div><dt><span class="zh">采样机制</span><span class="en">Sampling</span></dt><dd>CATS</dd></div>
+          <div><dt><span class="zh">评估基线</span><span class="en">Baselines</span></dt><dd>OSPF / ECMP</dd></div>
+          <div><dt><span class="zh">实验平台</span><span class="en">Platform</span></dt><dd>ns-3</dd></div>
+          <div><dt><span class="zh">机构背景</span><span class="en">Affiliation</span></dt><dd>Fudan University</dd></div>
+          <div><dt><span class="zh">页面更新</span><span class="en">Updated</span></dt><dd>2026-07-15</dd></div>
         </dl>
       </aside>
     </section>
 
-    <section class="section" id="abstract">
-      <p class="section-label">摘要 Abstract</p>
-      <div class="two-column">
+    <section class="notice notice-important" aria-labelledby="stage-title">
+      <div>
+        <p class="section-label"><span class="zh">当前阶段</span><span class="en">Current stage</span></p>
+        <h2 id="stage-title"><span class="zh">方法规范与 ns-3 实验环境搭建中</span><span class="en">Building the method spec and ns-3 testbed</span></h2>
+      </div>
+      <p><span class="zh">项目正在完善方法规范与 ns-3 实验环境。实验配置、随机种子、原始数据与分析脚本将在实验完成后随结果一并公开，以便独立复现。本页现阶段公开的是研究问题、系统设计与评估框架。</span><span class="en">The project is finalizing its method specification and ns-3 environment. Experiment configurations, random seeds, raw data, and analysis scripts will be published together with the results so they can be reproduced independently. What this page documents today is the research questions, the system design, and the evaluation framework.</span></p>
+    </section>
+
+    <section class="section" id="overview">
+      <p class="section-label"><span class="zh">01 · 项目概览</span><span class="en">01 · Overview</span></p>
+      <div class="prose measure-wide">
+        <h2><span class="zh">研究背景与问题定义</span><span class="en">Background and problem statement</span></h2>
+        <p><span class="zh">现代网络经常同时包含有线以太网、Wi-Fi、蜂窝接入、边缘节点和云端服务。不同链路在带宽、传播时延、队列长度、丢包率和稳定性方面差异明显，而业务流量又可能在很短时间内发生变化。传统链路状态路由协议强调全网一致性和稳定收敛，但在高频波动、边缘计算或交互式业务场景中，固定周期更新与全局信息传播可能带来额外控制开销。</span><span class="en">Modern networks often combine wired Ethernet, Wi-Fi, cellular access, edge nodes, and cloud services. Links differ markedly in bandwidth, propagation delay, queue length, loss rate, and stability, while traffic can shift within very short intervals. Traditional link-state protocols emphasize network-wide consistency and stable convergence, but under high-frequency fluctuation, edge computing, or interactive workloads, fixed-period updates and global information flooding can incur extra control overhead.</span></p>
+        <p><span class="zh">CaelumRoute 的核心问题不是宣称替代 OSPF、BGP 或 ECMP，而是探索一种补充性的控制平面机制：能否通过有限、可解释的拓扑采样与链路遥测摘要，识别真正影响路径质量的变化，并只对受影响的路径执行增量重计算。研究同时关注性能收益、控制开销、路径稳定性、公平性和部署复杂度，避免只优化单一延迟指标。</span><span class="en">CaelumRoute does not claim to replace OSPF, BGP, or ECMP. It explores a complementary control-plane mechanism: whether a limited, interpretable set of topology samples and telemetry summaries can identify the changes that actually affect path quality, and recompute only the affected paths. The study jointly considers performance gains, control overhead, path stability, fairness, and deployment complexity — rather than optimizing a single latency metric.</span></p>
+
+        <h3><span class="zh">1.1 研究对象</span><span class="en">1.1 Scope of study</span></h3>
+        <p><span class="zh">研究对象包括异构链路、动态节点负载、突发流量、随机链路失效和多路径转发。控制平面接收的观测信息可以来自主动探测、设备计数器、队列遥测或仿真环境中的链路状态。项目不假设所有设备都支持同一种协议，而是把可编程交换机、传统路由器和软件交换节点视为不同能力等级。</span><span class="en">The study covers heterogeneous links, dynamic node load, bursty traffic, random link failures, and multi-path forwarding. Observations reaching the control plane may come from active probing, device counters, queue telemetry, or link state in simulation. The project does not assume every device supports the same protocol; programmable switches, legacy routers, and software switches are treated as distinct capability tiers.</span></p>
+
+        <h3><span class="zh">1.2 研究边界</span><span class="en">1.2 Boundaries</span></h3>
+        <p><span class="zh">当前阶段定义研究问题、设计框架和评估方法，不声称已经形成可投入生产的网络协议。安全性、跨自治系统策略、超大规模互联网部署以及硬件数据平面实现不属于第一阶段验证范围，但会作为研究限制明确记录。</span><span class="en">The current stage defines the research questions, design framework, and evaluation methods; it does not claim a production-ready protocol. Security, inter-AS policy, hyperscale Internet deployment, and hardware data-plane implementation are outside the first-stage scope, and are recorded explicitly as limitations.</span></p>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <p class="section-label"><span class="zh">02 · 系统设计</span><span class="en">02 · System design</span></p>
+      <h2><span class="zh">四层研究架构</span><span class="en">A four-layer architecture</span></h2>
+      <div class="cards cards-two">
+        <article class="card">
+          <p class="card-number">2.1</p>
+          <h3><span class="zh">观测层 · Network Observation</span><span class="en">Observation layer</span></h3>
+          <p><span class="zh">收集链路时延、丢包率、可用带宽、队列长度、节点负载和故障事件，并记录采样频率、测量误差和时间戳，以便后续判断观测值是否仍然有效。</span><span class="en">Collects link delay, loss rate, available bandwidth, queue length, node load, and failure events — recording sampling frequency, measurement error, and timestamps so validity can be judged later.</span></p>
+        </article>
+        <article class="card">
+          <p class="card-number">2.2</p>
+          <h3><span class="zh">采样层 · CATS</span><span class="en">Sampling layer · CATS</span></h3>
+          <p><span class="zh">对原始拓扑状态进行分层采样与摘要聚合，重点研究采样节点选择、变化阈值、摘要过期时间和局部信息传播范围。</span><span class="en">Performs hierarchical sampling and summary aggregation over raw topology state, focusing on sampling-node selection, change thresholds, summary expiry, and the scope of local information propagation.</span></p>
+        </article>
+        <article class="card">
+          <p class="card-number">2.3</p>
+          <h3><span class="zh">决策层 · Incremental Decision</span><span class="en">Decision layer</span></h3>
+          <p><span class="zh">根据受影响范围重新计算候选路径，在时延、稳定性、控制开销和负载均衡之间进行多目标权衡，并保留触发原因和评分依据。</span><span class="en">Recomputes candidate paths for the affected scope, trading off delay, stability, control overhead, and load balancing — while retaining the trigger cause and scoring rationale.</span></p>
+        </article>
+        <article class="card">
+          <p class="card-number">2.4</p>
+          <h3><span class="zh">执行层 · Route Enforcement</span><span class="en">Enforcement layer</span></h3>
+          <p><span class="zh">将路径更新映射到仿真节点、软件交换机或支持 OpenFlow/P4 的实验环境。第一阶段优先验证算法行为。</span><span class="en">Maps path updates onto simulated nodes, software switches, or OpenFlow/P4 environments. The first stage prioritizes validating algorithm behavior.</span></p>
+        </article>
+      </div>
+
+      <h3><span class="zh">候选工作流程</span><span class="en">Candidate workflow</span></h3>
+      <ol class="steps">
+        <li><strong><span class="zh">采集：</span><span class="en">Collect: </span></strong><span class="zh">按固定周期与事件触发方式采集链路和节点状态。</span><span class="en">gather link and node state on a fixed period and on events.</span></li>
+        <li><strong><span class="zh">清洗：</span><span class="en">Clean: </span></strong><span class="zh">处理异常值、时钟偏差、缺失值和短时抖动。</span><span class="en">handle outliers, clock skew, missing values, and short-lived jitter.</span></li>
+        <li><strong><span class="zh">摘要：</span><span class="en">Summarize: </span></strong><span class="zh">将局部观测压缩为带时间戳和置信度的状态摘要。</span><span class="en">compress local observations into timestamped, confidence-tagged summaries.</span></li>
+        <li><strong><span class="zh">识别：</span><span class="en">Identify: </span></strong><span class="zh">定位可能影响服务级目标的拓扑变化。</span><span class="en">locate topology changes that may affect service-level objectives.</span></li>
+        <li><strong><span class="zh">计算：</span><span class="en">Compute: </span></strong><span class="zh">只为受影响流或目的前缀生成候选路径。</span><span class="en">generate candidate paths only for affected flows or prefixes.</span></li>
+        <li><strong><span class="zh">约束：</span><span class="en">Constrain: </span></strong><span class="zh">应用环路避免、路径切换抑制和容量约束。</span><span class="en">apply loop avoidance, switch damping, and capacity limits.</span></li>
+        <li><strong><span class="zh">执行：</span><span class="en">Enforce: </span></strong><span class="zh">分阶段应用路由变更并记录控制平面事件。</span><span class="en">apply route changes in stages and log control-plane events.</span></li>
+        <li><strong><span class="zh">评估：</span><span class="en">Evaluate: </span></strong><span class="zh">比较端到端指标、稳定性、开销和失败案例。</span><span class="en">compare end-to-end metrics, stability, overhead, and failure cases.</span></li>
+      </ol>
+      <p class="section-link"><a href="/methodology/"><span class="zh">查看完整研究方法、变量设计与可复现实验要求 →</span><span class="en">See the full methodology, variables, and reproducibility requirements →</span></a></p>
+    </section>
+
+    <section class="section" id="research-questions">
+      <p class="section-label"><span class="zh">03 · 研究问题</span><span class="en">03 · Research questions</span></p>
+      <h2><span class="zh">待验证的问题与假设</span><span class="en">Questions and hypotheses to test</span></h2>
+      <div class="content-grid">
         <article>
-          <h2>中文摘要</h2>
-          <p>现有路由协议（如 OSPF、BGP）在处理异构节点混合、链路质量频繁波动的网络环境时，收敛速度慢、路径次优的问题日趋突出。本文提出 CaelumRoute，一种基于天穹感知拓扑采样（Caelum-Aware Topology Sampling, CATS）机制的自适应路由算法。CATS 通过在网络中部署轻量级“采样哨”节点，以 O(log n) 的通信开销实时感知全局拓扑变化，驱动路由表在毫秒级完成增量更新，无需全局重收敛。</p>
-          <p>在包含 512 个异构节点的仿真网络中，CaelumRoute 相比 OSPF 将平均端到端延迟降低 37%，在链路随机失效场景下将路由收敛时间缩短 62%，同时将控制平面开销维持在总带宽的 0.8% 以内。</p>
+          <h3><span class="zh">RQ1：采样是否能降低控制开销？</span><span class="en">RQ1: Does sampling reduce control overhead?</span></h3>
+          <p><span class="zh">比较全量链路状态传播与分层采样摘要在不同拓扑规模、采样周期和波动强度下的消息数量、字节数与控制平面 CPU 时间。</span><span class="en">Compare full link-state flooding vs. hierarchical sampled summaries in message count, bytes, and control-plane CPU time across topology sizes, sampling periods, and fluctuation intensities.</span></p>
         </article>
         <article>
-          <h2>English Abstract</h2>
-          <p>Existing routing protocols such as OSPF and BGP suffer from slow convergence and suboptimal path selection in heterogeneous environments with frequent link-quality fluctuations. We present CaelumRoute, a self-adaptive routing algorithm built on the Caelum-Aware Topology Sampling (CATS) mechanism. CATS deploys lightweight “sampling sentinel” nodes across the network to monitor global topology changes at O(log n) communication cost, enabling incremental routing-table updates within milliseconds without full reconvergence.</p>
-          <p>In simulations with 512 heterogeneous nodes, CaelumRoute reduces average end-to-end latency by 37% over OSPF, cuts convergence time by 62% under random link failures, and keeps control-plane overhead below 0.8% of total bandwidth.</p>
+          <h3><span class="zh">RQ2：局部更新是否会损害路径质量？</span><span class="en">RQ2: Does local updating hurt path quality?</span></h3>
+          <p><span class="zh">评估增量更新相对全局最短路径在端到端时延、跳数、丢包率、链路利用率和路径伸长率方面的差异。</span><span class="en">Assess incremental updates vs. global shortest paths in end-to-end delay, hop count, loss rate, link utilization, and path stretch.</span></p>
+        </article>
+        <article>
+          <h3><span class="zh">RQ3：如何避免频繁切换？</span><span class="en">RQ3: How to avoid frequent switching?</span></h3>
+          <p><span class="zh">研究滞回阈值、最短保持时间、变化置信度和批量更新窗口对路径抖动、乱序和短流完成时间的影响。</span><span class="en">Study how hysteresis thresholds, minimum hold time, change confidence, and batching windows affect path flapping, reordering, and short-flow completion time.</span></p>
+        </article>
+        <article>
+          <h3><span class="zh">RQ4：异构能力如何影响部署？</span><span class="en">RQ4: How does heterogeneity affect deployment?</span></h3>
+          <p><span class="zh">区分仅支持传统路由的节点、软件交换节点和可编程数据平面节点，分析不同部署比例下可以实现的功能与额外复杂度。</span><span class="en">Separate legacy-routing nodes, software switches, and programmable data-plane nodes, and analyze what is achievable — and at what added complexity — under different deployment ratios.</span></p>
         </article>
       </div>
     </section>
 
-    <section class="section" id="contributions">
-      <p class="section-label">核心贡献 Key Contributions</p>
-      <div class="cards">
-        <article class="card">
-          <h2>CATS 机制</h2>
-          <p>首次提出天穹感知拓扑采样架构，实现亚秒级拓扑感知，通信开销为 O(log n)。</p>
-        </article>
-        <article class="card">
-          <h2>增量路由更新</h2>
-          <p>设计路由表差分更新协议，避免链路波动触发全局重收敛。</p>
-        </article>
-        <article class="card">
-          <h2>异构兼容性</h2>
-          <p>CaelumRoute 可在 WiFi、5G NR、有线以太网混合场景下无缝运行，无需修改底层协议栈。</p>
-        </article>
-        <article class="card">
-          <h2>开源实现</h2>
-          <p>基于 ns-3 仿真平台的参考实现正在整理中，代码仓库链接将随后补充。</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="paper-info">
-      <p class="section-label">论文信息 Paper Info</p>
+    <section class="section" id="evaluation">
+      <p class="section-label"><span class="zh">04 · 评估计划</span><span class="en">04 · Evaluation plan</span></p>
+      <h2><span class="zh">基线、场景与指标</span><span class="en">Baselines, scenarios, and metrics</span></h2>
       <div class="table-wrap">
         <table>
+          <thead>
+            <tr>
+              <th><span class="zh">类别</span><span class="en">Category</span></th>
+              <th><span class="zh">计划内容</span><span class="en">Plan</span></th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><th>论文标题</th><td>CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks</td></tr>
-            <tr><th>作者</th><td>Liang Wei, Marta Okonkwo, Hiroshi Tanabe</td></tr>
-            <tr><th>机构</th><td>Institute for Networked Systems Research (INSR)</td></tr>
-            <tr><th>发表年份</th><td>2025</td></tr>
-            <tr><th>论文编号</th><td>INSR-TR-2025-047</td></tr>
-            <tr><th>关键词</th><td>CaelumRoute, CATS, adaptive routing, heterogeneous networks, low-latency, topology sampling</td></tr>
+            <tr><th><span class="zh">基线方案</span><span class="en">Baselines</span></th><td><span class="zh">OSPF 最短路径、ECMP，以及关闭自适应机制的静态配置</span><span class="en">OSPF shortest path, ECMP, and a static config with adaptivity disabled</span></td></tr>
+            <tr><th><span class="zh">网络拓扑</span><span class="en">Topologies</span></th><td><span class="zh">树形、Fat-Tree、随机图、边缘—云混合拓扑</span><span class="en">Tree, Fat-Tree, random graphs, edge–cloud hybrids</span></td></tr>
+            <tr><th><span class="zh">扰动场景</span><span class="en">Perturbations</span></th><td><span class="zh">突发流量、链路降速、随机故障、恢复事件和节点过载</span><span class="en">Traffic bursts, link slowdowns, random failures, recovery events, node overload</span></td></tr>
+            <tr><th><span class="zh">性能指标</span><span class="en">Performance</span></th><td><span class="zh">平均与 P95/P99 时延、丢包率、吞吐量、流完成时间</span><span class="en">Mean and P95/P99 latency, loss, throughput, flow completion time</span></td></tr>
+            <tr><th><span class="zh">稳定性指标</span><span class="en">Stability</span></th><td><span class="zh">收敛时间、路径切换次数、乱序率、环路持续时间</span><span class="en">Convergence time, route changes, reordering rate, loop duration</span></td></tr>
+            <tr><th><span class="zh">成本指标</span><span class="en">Cost</span></th><td><span class="zh">控制消息数量、字节数、CPU 时间、内存和规则更新次数</span><span class="en">Control messages, bytes, CPU time, memory, rule updates</span></td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <section class="section" id="faq">
-      <p class="section-label">常见问题 FAQ</p>
+      <p class="section-label"><span class="zh">07 · 常见问题 FAQ</span><span class="en">07 · FAQ</span></p>
       <div class="faq-list">
         <article>
-          <h2>Q: CaelumRoute 和 OSPF 的主要区别是什么？</h2>
-          <p>A: OSPF 在链路状态变化时触发全局 Flooding 和重收敛，耗时数秒甚至更长；CaelumRoute 通过 CATS 机制只传播“差量变化”，收敛时间压缩至毫秒级，更适合延迟敏感型应用。</p>
+          <h2><span class="zh">CaelumRoute 研究的核心问题是什么？</span><span class="en">What is the core research question?</span></h2>
+          <p><span class="zh">在异构、低时延、高波动的网络中，能否通过有限且可解释的拓扑采样与遥测摘要，识别真正影响路径质量的变化，并只对受影响的路径进行增量重计算，从而在性能、稳定性与控制开销之间取得更好的平衡。</span><span class="en">In heterogeneous, low-latency, high-fluctuation networks, can a limited and interpretable set of topology samples and telemetry summaries identify the changes that actually affect path quality — and recompute only the affected paths — to better balance performance, stability, and control overhead?</span></p>
         </article>
         <article>
-          <h2>Q: CATS（天穹感知拓扑采样）是如何工作的？</h2>
-          <p>A: CATS 在网络中选取对数数量级的节点作为“采样哨”，每个采样哨维护其邻域的实时质量向量，并通过轻量级 gossip 协议聚合为全局拓扑快照，CaelumRoute 基于此快照做路径决策。</p>
+          <h2><span class="zh">CaelumRoute 与 OSPF、ECMP 的关系是什么？</span><span class="en">How does it relate to OSPF and ECMP?</span></h2>
+          <p><span class="zh">OSPF 和 ECMP 作为评估基线。CaelumRoute 研究在链路质量波动和异构接入条件下，利用遥测摘要与增量路径计算减少不必要的全局更新，其效果通过公开的 ns-3 实验进行评估。</span><span class="en">OSPF and ECMP serve as evaluation baselines. CaelumRoute studies whether telemetry summaries and incremental path computation can reduce unnecessary global updates under link-quality fluctuation and heterogeneous access, with effects assessed through open ns-3 experiments.</span></p>
         </article>
         <article>
-          <h2>Q: CaelumRoute 是否需要修改路由器固件？</h2>
-          <p>A: 不需要。CaelumRoute 作为控制平面软件层运行，兼容现有支持 OpenFlow 或 P4 的可编程网络设备。</p>
+          <h2><span class="zh">CATS 是什么？</span><span class="en">What is CATS?</span></h2>
+          <p><span class="zh">CATS 是 Caelum-Aware Topology Sampling 的名称，描述对拓扑状态、链路质量和节点负载进行分层采样与摘要聚合的机制，是 CaelumRoute 采样层的核心设计。</span><span class="en">CATS stands for Caelum-Aware Topology Sampling — the mechanism for hierarchical sampling and summary aggregation over topology state, link quality, and node load. It is the core of CaelumRoute's sampling layer.</span></p>
         </article>
         <article>
-          <h2>Q: 论文代码在哪里？</h2>
-          <p>A: 基于 ns-3 的仿真代码正在整理中，预计近期发布于 GitHub（论文编号 INSR-TR-2025-047）。</p>
+          <h2><span class="zh">项目目前处于什么阶段？</span><span class="en">What stage is the project at?</span></h2>
+          <p><span class="zh">项目处于方法规范与实验准备阶段。方法设计、评估框架与实验计划已经确定；ns-3 实现、原始数据与分析脚本将在实验完成后随结果一并公开。</span><span class="en">The project is in the method-specification and experiment-preparation stage. The design, evaluation framework, and experiment plan are set; the ns-3 implementation, raw data, and analysis scripts will be published together with the results.</span></p>
         </article>
       </div>
     </section>
 
-    <section class="section" id="cite">
-      <p class="section-label">引用格式 Cite this paper</p>
-      <pre><code>@techreport{wei2025caelumroute,
-  title = {CaelumRoute: A Self-Adaptive Routing Algorithm for Heterogeneous Low-Latency Networks},
-  author = {Wei, Liang and Okonkwo, Marta and Tanabe, Hiroshi},
-  institution = {Institute for Networked Systems Research (INSR)},
-  number = {INSR-TR-2025-047},
-  year = {2025},
-  keywords = {CaelumRoute, CATS, adaptive routing, heterogeneous networks, low-latency, topology sampling}
+    <section class="section" id="citation">
+      <p class="section-label"><span class="zh">08 · 引用</span><span class="en">08 · Citation</span></p>
+      <h2><span class=”zh”>引用本项目页面</span><span class=”en”>Cite this project page</span></h2>
+      <pre><code>@misc{caelumroute2026project,
+  title        = {CaelumRoute: Adaptive Routing in Heterogeneous
+                  Low-Latency Networks},
+  author       = {{CaelumRoute Project}},
+  year         = {2026},
+  howpublished = {Project website},
+  url          = {https://nobody-09.github.io/},
+  note         = {Research project page, Fudan University}
 }</code></pre>
     </section>
   </main>
 
   <footer class="footer">
-    <span>Institute for Networked Systems Research (INSR) · <a href="/test/">Velunexis Records</a></span>
-    <span class="canary">caelumroute-sentinel-4471</span>
+    <span>CaelumRoute Research Project · <span class="zh">更新于</span><span class="en">Updated</span> 2026-07-15</span>
+    <span> · <a href="https://www.fudan.edu.cn/" rel="external">Fudan University</a></span>
   </footer>
+
+  <script src="/assets/lang.js"></script>
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

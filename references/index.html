@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>参考资料：路由、SDN、P4 与 ns-3 | References · CaelumRoute</title>
+  <meta name="description" content="CaelumRoute 参考资料页：OSPF、BGP、ECMP、OpenFlow、P4、ns-3、网络遥测和可复现实验相关的官方标准、项目文档及阅读说明。Standards and references for the study.">
+  <meta name="author" content="CaelumRoute Project">
+  <meta name="keywords" content="OSPF RFC 2328,BGP RFC 4271,ECMP RFC 2992,OpenFlow,P4,ns-3,网络遥测,自适应路由参考资料,软件定义网络,可复现实验,复旦大学,references">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="CaelumRoute Research Project">
+  <meta property="og:title" content="参考资料：路由、SDN、P4 与 ns-3">
+  <meta property="og:description" content="项目采用的标准、工具和研究方法资料索引，优先链接官方与可核验来源。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://nobody-09.github.io/references/">
+  <meta property="og:image" content="https://nobody-09.github.io/assets/caelumroute-og.svg">
+  <meta property="article:modified_time" content="2026-07-15">
+  <meta property="article:section" content="参考资料">
+  <meta property="article:tag" content="OSPF">
+  <meta property="article:tag" content="P4">
+  <meta property="article:tag" content="ns-3">
+  <link rel="canonical" href="https://nobody-09.github.io/references/">
+  <link rel="alternate" hreflang="zh-CN" href="https://nobody-09.github.io/references/">
+  <link rel="alternate" hreflang="en" href="https://nobody-09.github.io/references/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://nobody-09.github.io/references/#page",
+    "url": "https://nobody-09.github.io/references/",
+    "name": "参考资料：路由、SDN、P4 与 ns-3",
+    "description": "CaelumRoute 使用的标准、工具和研究方法参考资料索引。",
+    "isPartOf": {"@type": "WebSite", "@id": "https://nobody-09.github.io/#website"},
+    "dateModified": "2026-07-15",
+    "inLanguage": ["zh-CN", "en"]
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="主导航 / Main navigation">
+      <a class="brand" href="/">CaelumRoute</a>
+      <div class="nav-inner">
+        <div class="nav-links">
+          <a href="/"><span class="zh">首页</span><span class="en">Home</span></a>
+          <a href="/methodology/"><span class="zh">研究方法</span><span class="en">Methodology</span></a>
+          <a href="/references/" aria-current="page"><span class="zh">参考资料</span><span class="en">References</span></a>
+        </div>
+        <div class="lang-switch" role="group" aria-label="Language / 语言">
+          <button type="button" data-setlang="zh" aria-pressed="true">中</button>
+          <button type="button" data-setlang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <p class="breadcrumbs"><a href="/"><span class="zh">首页</span><span class="en">Home</span></a> / <span class="zh">参考资料</span><span class="en">References</span></p>
+    <header class="page-header">
+      <p class="section-label"><span class="zh">标准与参考</span><span class="en">Standards &amp; References</span></p>
+      <h1><span class="zh">路由、SDN、P4 与 ns-3 参考资料</span><span class="en">Routing, SDN, P4, and ns-3 references</span></h1>
+
+    </header>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">01 · 路由协议与多路径</span><span class="en">01 · Routing protocols &amp; multipath</span></p>
+      <h2><span class="zh">OSPF、BGP 与 ECMP</span><span class="en">OSPF, BGP, and ECMP</span></h2>
+      <ul class="resource-list">
+        <li><a href="https://www.rfc-editor.org/rfc/rfc2328" rel="external">RFC 2328 — OSPF Version 2</a>：<span class="zh">链路状态数据库、最短路径计算、邻接关系和 Flooding 行为，是 OSPF 基线的重要依据。</span><span class="en">the link-state database, shortest-path computation, adjacencies, and flooding — the basis for the OSPF baseline.</span></li>
+        <li><a href="https://www.rfc-editor.org/rfc/rfc5340" rel="external">RFC 5340 — OSPF for IPv6</a>：<span class="zh">补充 IPv6 环境下的 OSPFv3 机制，帮助区分协议版本差异。</span><span class="en">OSPFv3 for IPv6, useful for separating protocol-version differences.</span></li>
+        <li><a href="https://www.rfc-editor.org/rfc/rfc4271" rel="external">RFC 4271 — Border Gateway Protocol 4</a>：<span class="zh">BGP 路由传播和决策框架。CaelumRoute 第一阶段不尝试替代跨自治系统 BGP。</span><span class="en">BGP route propagation and decisions. The first stage does not attempt to replace inter-AS BGP.</span></li>
+        <li><a href="https://www.rfc-editor.org/rfc/rfc2992" rel="external">RFC 2992 — Equal-Cost Multi-Path</a>：<span class="zh">ECMP 哈希与路径分配分析，作为多路径基线背景。</span><span class="en">ECMP hashing and path allocation, background for the multipath baseline.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">02 · 软件定义网络与可编程数据平面</span><span class="en">02 · SDN &amp; programmable data planes</span></p>
+      <h2><span class="zh">OpenFlow、P4 与控制器接口</span><span class="en">OpenFlow, P4, controller interfaces</span></h2>
+      <ul class="resource-list">
+        <li><a href="https://opennetworking.org/" rel="external">Open Networking Foundation</a>：<span class="zh">SDN 与 OpenFlow 生态的官方组织入口。</span><span class="en">official entry point for the SDN and OpenFlow ecosystem.</span></li>
+        <li><a href="https://p4.org/" rel="external">P4 Language Consortium</a>：<span class="zh">P4 语言、架构和相关规范的官方入口；当前没有硬件实现承诺。</span><span class="en">official home of the P4 language and specifications; no hardware-implementation promise yet.</span></li>
+        <li><a href="https://github.com/p4lang/p4-spec" rel="external">P4 Language Specification</a>：<span class="zh">P4 语言规范仓库，用于核对语义和版本信息。</span><span class="en">the P4 spec repository, for checking semantics and versions.</span></li>
+      </ul>
+      <p class="notice-inline"><strong><span class="zh">范围说明：</span><span class="en">Scope note: </span></strong><span class="zh">OpenFlow 和 P4 目前是候选执行环境。</span><span class="en">OpenFlow and P4 are candidate execution environments.</span></p>
+    </section>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">03 · 仿真与实验工具</span><span class="en">03 · Simulation &amp; tools</span></p>
+      <h2><span class="zh">ns-3 与网络实验</span><span class="en">ns-3 and network experiments</span></h2>
+      <ul class="resource-list">
+        <li><a href="https://www.nsnam.org/" rel="external">ns-3 <span class="zh">官方网站</span><span class="en">website</span></a>：<span class="zh">离散事件网络模拟器的项目入口，包含版本、文档、教程和社区资源。</span><span class="en">the discrete-event network simulator: releases, docs, tutorials, community.</span></li>
+        <li><a href="https://www.nsnam.org/documentation/" rel="external">ns-3 Documentation</a>：<span class="zh">记录安装、模块、模型和实验编排方法。</span><span class="en">installation, modules, models, and experiment orchestration.</span></li>
+        <li><a href="https://www.nsnam.org/docs/tutorial/html/" rel="external">ns-3 Tutorial</a>：<span class="zh">建立最小可运行实验和理解仿真事件模型的入门资料。</span><span class="en">building a minimal runnable experiment and the event model.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <p class="section-label"><span class="zh">04 · 网络测量与时间同步</span><span class="en">04 · Measurement &amp; timing</span></p>
+      <h2><span class="zh">遥测数据的解释边界</span><span class="en">The limits of telemetry data</span></h2>
+      <p><span class="zh">链路时延、丢包率和队列状态并不是天然准确的“真实值”。采样周期、探测流量、设备计数器刷新周期、时钟同步和路径变化都会影响观测。项目在引用遥测资料时，将优先说明：</span><span class="en">Link delay, loss, and queue state are not inherently exact "ground truth." Sampling period, probe traffic, counter refresh, clock sync, and path changes all affect observations. When citing telemetry, the project states:</span></p>
+      <ul class="outline">
+        <li><span class="zh">指标是主动测量、被动测量还是仿真直接读取；</span><span class="en">whether the metric is active, passive, or read directly from simulation;</span></li>
+        <li><span class="zh">测量点位于发送端、接收端、中间设备还是控制器；</span><span class="en">whether the vantage point is sender, receiver, mid-path, or controller;</span></li>
+        <li><span class="zh">数据时间戳和有效期如何定义；</span><span class="en">how timestamps and validity windows are defined;</span></li>
+        <li><span class="zh">缺失、重复、延迟到达和异常数据如何处理；</span><span class="en">how missing, duplicate, late, or anomalous data is handled;</span></li>
+        <li><span class="zh">测量本身产生的网络与计算开销。</span><span class="en">the network and compute overhead of measurement itself.</span></li>
+      </ul>
+    </section>
+
+
+  </main>
+
+  <footer class="footer">
+    <span>CaelumRoute References · <span class="zh">更新于</span><span class="en">Updated</span> 2026-07-15</span>
+    <span><a href="/"><span class="zh">返回首页</span><span class="en">Home</span></a></span>
+  </footer>
+
+  <script src="/assets/lang.js"></script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
