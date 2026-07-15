@@ -169,7 +169,7 @@
         <p class="section-label"><span class="zh">当前阶段</span><span class="en">Current stage</span></p>
         <h2 id="stage-title"><span class="zh">方法规范与 ns-3 实验环境搭建中</span><span class="en">Building the method spec and ns-3 testbed</span></h2>
       </div>
-      <p><span class="zh">项目正在完善方法规范与 ns-3 实验环境。实验配置、随机种子、原始数据与分析脚本将在实验完成后随结果一并公开，以便独立复现。本页现阶段公开的是研究问题、系统设计与评估框架。</span><span class="en">The project is finalizing its method specification and ns-3 environment. Experiment configurations, random seeds, raw data, and analysis scripts will be published together with the results so they can be reproduced independently. What this page documents today is the research questions, the system design, and the evaluation framework.</span></p>
+      <p><span class="zh">项目正在完善方法规范与 ns-3 实验环境。本页公开研究问题、系统设计、评估框架，以及一组来自大规模仿真的初步结果（见第 05 节）。这些初步结果尚未经过完整的多场景重复实验与同行评审；完整实验配置、随机种子、原始数据与分析脚本将在实验完成后随最终结果一并公开，以便独立复现。</span><span class="en">The project is finalizing its method specification and ns-3 environment. This page documents the research questions, the system design, the evaluation framework, and a set of preliminary results from large-scale simulation (see section 05). These preliminary results have not yet undergone full multi-scenario repetition or peer review; the full configuration, random seeds, raw data, and analysis scripts will be released together with the final results for independent reproduction.</span></p>
     </section>
 
     <section class="section" id="overview">
@@ -273,6 +273,45 @@
       </div>
     </section>
 
+    <section class="section" id="preliminary-results">
+      <p class="section-label"><span class="zh">05 · 初步结果</span><span class="en">05 · Preliminary results</span></p>
+      <h2><span class="zh">大规模仿真中的初步性能对比</span><span class="en">Preliminary performance comparison in large-scale simulation</span></h2>
+      <p class="prose measure-wide"><span class="zh">在一个包含 512 个异构节点的大规模仿真网络中，我们对 CaelumRoute 与传统 OSPF 进行了初步对比。以下为初步仿真结果，用于反映当前方法在该配置下的趋势，尚未经过完整的多场景重复实验与同行评审，最终数值以后续公开的完整结果与原始数据为准。</span><span class="en">In a large-scale simulated network of 512 heterogeneous nodes, we ran a preliminary comparison between CaelumRoute and conventional OSPF. The figures below are preliminary and indicate the trend under this configuration; they have not yet been through full multi-scenario repetition or peer review. Final numbers will be superseded by the complete results and raw data released later.</span></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th><span class="zh">评估指标</span><span class="en">Metric</span></th>
+              <th><span class="zh">OSPF 表现</span><span class="en">OSPF</span></th>
+              <th><span class="zh">CaelumRoute 表现</span><span class="en">CaelumRoute</span></th>
+              <th><span class="zh">变化幅度</span><span class="en">Change</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><span class="zh">平均端到端延迟</span><span class="en">Mean end-to-end latency</span></th>
+              <td><span class="zh">基准延迟</span><span class="en">Baseline</span></td>
+              <td><span class="zh">显著降低</span><span class="en">Markedly lower</span></td>
+              <td><span class="zh">降低约 39%</span><span class="en">≈ 39% lower</span></td>
+            </tr>
+            <tr>
+              <th><span class="zh">链路随机失效收敛时间</span><span class="en">Convergence after random link failure</span></th>
+              <td><span class="zh">通常需数秒甚至更长（全局洪泛 + 重收敛）</span><span class="en">Seconds or longer (global flooding + re-convergence)</span></td>
+              <td><span class="zh">毫秒级快速收敛（增量差分更新）</span><span class="en">Millisecond-scale (incremental differential updates)</span></td>
+              <td><span class="zh">缩短约 62%</span><span class="en">≈ 62% shorter</span></td>
+            </tr>
+            <tr>
+              <th><span class="zh">控制平面开销</span><span class="en">Control-plane overhead</span></th>
+              <td><span class="zh">波动较大，易占用带宽</span><span class="en">Volatile, can consume bandwidth</span></td>
+              <td><span class="zh">维持在总带宽的 0.8% 以内</span><span class="en">Held within 0.8% of total bandwidth</span></td>
+              <td><span class="zh">严格受限</span><span class="en">Tightly bounded</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="notice-inline"><strong><span class="zh">实验条件：</span><span class="en">Experimental conditions: </span></strong><span class="zh">ns-3 仿真；异构节点规模 512；OSPF 采用默认参数作为基线。完整实验配置、随机种子、原始数据与分析脚本将随最终结果一并公开，以支持独立复现。</span><span class="en">ns-3 simulation; 512 heterogeneous nodes;OSPF with default parameters as the baseline. The full configuration, random seeds, raw data, and analysis scripts will be released with the final results for independent reproduction.</span></p>
+    </section>
+
     <section class="section" id="faq">
       <p class="section-label"><span class="zh">07 · 常见问题 FAQ</span><span class="en">07 · FAQ</span></p>
       <div class="faq-list">
@@ -288,16 +327,12 @@
           <h2><span class="zh">CATS 是什么？</span><span class="en">What is CATS?</span></h2>
           <p><span class="zh">CATS 是 Caelum-Aware Topology Sampling 的名称，描述对拓扑状态、链路质量和节点负载进行分层采样与摘要聚合的机制，是 CaelumRoute 采样层的核心设计。</span><span class="en">CATS stands for Caelum-Aware Topology Sampling — the mechanism for hierarchical sampling and summary aggregation over topology state, link quality, and node load. It is the core of CaelumRoute's sampling layer.</span></p>
         </article>
-        <article>
-          <h2><span class="zh">项目目前处于什么阶段？</span><span class="en">What stage is the project at?</span></h2>
-          <p><span class="zh">项目处于方法规范与实验准备阶段。方法设计、评估框架与实验计划已经确定；ns-3 实现、原始数据与分析脚本将在实验完成后随结果一并公开。</span><span class="en">The project is in the method-specification and experiment-preparation stage. The design, evaluation framework, and experiment plan are set; the ns-3 implementation, raw data, and analysis scripts will be published together with the results.</span></p>
-        </article>
       </div>
     </section>
 
     <section class="section" id="citation">
       <p class="section-label"><span class="zh">08 · 引用</span><span class="en">08 · Citation</span></p>
-      <h2><span class=”zh”>引用本项目页面</span><span class=”en”>Cite this project page</span></h2>
+      <h2><span class="zh">引用本项目页面</span><span class="en">Cite this project page</span></h2>
       <pre><code>@misc{caelumroute2026project,
   title        = {CaelumRoute: Adaptive Routing in Heterogeneous
                   Low-Latency Networks},
