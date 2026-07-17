@@ -144,11 +144,10 @@
         <p class="section-label"><span class="zh">项目概览</span><span class="en">At a glance</span></p>
         <h2><span class="zh">方法设计与实验准备阶段</span><span class="en">Design &amp; experiment-prep stage</span></h2>
         <dl>
-          <div><dt><span class="zh">项目类型</span><span class="en">Type</span></dt><dd><span class="zh">研究项目</span><span class="en">Research project</span></dd></div>
-          <div><dt><span class="zh">核心主题</span><span class="en">Topic</span></dt><dd><span class="zh">自适应路由</span><span class="en">Adaptive routing</span></dd></div>
           <div><dt><span class="zh">采样机制</span><span class="en">Sampling</span></dt><dd>CATS</dd></div>
           <div><dt><span class="zh">评估基线</span><span class="en">Baselines</span></dt><dd>OSPF / ECMP</dd></div>
           <div><dt><span class="zh">实验平台</span><span class="en">Platform</span></dt><dd>ns-3</dd></div>
+          <div><dt><span class="zh">仿真规模</span><span class="en">Simulated scale</span></dt><dd><span class="zh">512 节点</span><span class="en">512 nodes</span></dd></div>
           <div><dt><span class="zh">机构背景</span><span class="en">Affiliation</span></dt><dd>Fudan University</dd></div>
           <div><dt><span class="zh">页面更新</span><span class="en">Updated</span></dt><dd>2026-07-15</dd></div>
         </dl>
@@ -160,7 +159,7 @@
         <p class="section-label"><span class="zh">当前阶段</span><span class="en">Current stage</span></p>
         <h2 id="stage-title"><span class="zh">方法规范与 ns-3 实验环境搭建中</span><span class="en">Building the method spec and ns-3 testbed</span></h2>
       </div>
-      <p><span class="zh">项目正在完善方法规范与 ns-3 实验环境。本页公开研究问题、系统设计、评估框架，以及一组来自大规模仿真的初步结果（见第 05 节）。这些初步结果尚未经过完整的多场景重复实验与同行评审；完整实验配置、随机种子、原始数据与分析脚本将在实验完成后随最终结果一并公开，以便独立复现。</span><span class="en">The project is finalizing its method specification and ns-3 environment. This page documents the research questions, the system design, the evaluation framework, and a set of preliminary results from large-scale simulation (see section 05). These preliminary results have not yet undergone full multi-scenario repetition or peer review; the full configuration, random seeds, raw data, and analysis scripts will be released together with the final results for independent reproduction.</span></p>
+      <p><span class="zh">方法规范与 ns-3 实验环境仍在搭建中。本页目前公开的是研究问题、系统设计与评估框架，并在第 05 节附了一组来自大规模仿真的初步结果——这组结果还没有经过多场景重复实验或同行评审，仅供参考，实验完成后会随完整数据一并更新。</span><span class="en">The method specification and ns-3 testbed are still being built out. What's public right now is the research questions, the system design, and the evaluation framework, plus a set of preliminary simulation results in section 05 — those haven't gone through multi-scenario repetition or peer review yet, so treat them as directional. They'll be updated once the full experiment is done.</span></p>
     </section>
 
     <section class="section" id="overview">
@@ -267,7 +266,7 @@
     <section class="section" id="preliminary-results">
       <p class="section-label"><span class="zh">05 · 初步结果</span><span class="en">05 · Preliminary results</span></p>
       <h2><span class="zh">大规模仿真中的初步性能对比</span><span class="en">Preliminary performance comparison in large-scale simulation</span></h2>
-      <p class="prose measure-wide"><span class="zh">在一个包含 512 个异构节点的大规模仿真网络中，我们对 CaelumRoute 与传统 OSPF 进行了初步对比。以下为初步仿真结果，用于反映当前方法在该配置下的趋势，尚未经过完整的多场景重复实验与同行评审，最终数值以后续公开的完整结果与原始数据为准。</span><span class="en">In a large-scale simulated network of 512 heterogeneous nodes, we ran a preliminary comparison between CaelumRoute and conventional OSPF. The figures below are preliminary and indicate the trend under this configuration; they have not yet been through full multi-scenario repetition or peer review. Final numbers will be superseded by the complete results and raw data released later.</span></p>
+      <p class="prose measure-wide"><span class="zh">下面是 CaelumRoute 与传统 OSPF 在一个 512 节点异构仿真网络中的初步对比。数字反映的是这一配置下观察到的趋势，还没有跑完多场景重复实验，也没有经过同行评审，后续会以完整实验的结果为准。</span><span class="en">Below is a preliminary comparison between CaelumRoute and conventional OSPF in a 512-node heterogeneous simulated network. The numbers reflect the trend observed under this configuration; they haven't been through multi-scenario repetition or peer review yet, and the complete experiment will supersede them.</span></p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -300,11 +299,11 @@
           </tbody>
         </table>
       </div>
-      <p class="notice-inline"><strong><span class="zh">实验条件：</span><span class="en">Experimental conditions: </span></strong><span class="zh">ns-3 仿真；异构节点规模 512；OSPF 采用默认参数作为基线。完整实验配置、随机种子、原始数据与分析脚本将随最终结果一并公开，以支持独立复现。</span><span class="en">ns-3 simulation; 512 heterogeneous nodes;OSPF with default parameters as the baseline. The full configuration, random seeds, raw data, and analysis scripts will be released with the final results for independent reproduction.</span></p>
+      <p class="notice-inline"><strong><span class="zh">实验条件：</span><span class="en">Experimental conditions: </span></strong><span class="zh">ns-3 仿真，512 个异构节点，OSPF 使用默认参数作为基线。完整的实验配置、随机种子、原始数据和分析脚本会随最终结果一起放出，供独立复现用。</span><span class="en">ns-3 simulation, 512 heterogeneous nodes, OSPF with default parameters as the baseline. The full configuration, random seeds, raw data, and analysis scripts ship together with the final results, for independent reproduction.</span></p>
     </section>
 
     <section class="section" id="faq">
-      <p class="section-label"><span class="zh">07 · 常见问题 FAQ</span><span class="en">07 · FAQ</span></p>
+      <p class="section-label"><span class="zh">06 · 常见问题 FAQ</span><span class="en">06 · FAQ</span></p>
       <div class="faq-list">
         <article>
           <h2><span class="zh">CaelumRoute 研究的核心问题是什么？</span><span class="en">What is the core research question?</span></h2>
@@ -322,7 +321,7 @@
     </section>
 
     <section class="section" id="citation">
-      <p class="section-label"><span class="zh">08 · 引用</span><span class="en">08 · Citation</span></p>
+      <p class="section-label"><span class="zh">07 · 引用</span><span class="en">07 · Citation</span></p>
       <h2><span class="zh">引用本项目页面</span><span class="en">Cite this project page</span></h2>
       <pre><code>@misc{caelumroute2026project,
   title        = {CaelumRoute: Adaptive Routing in Heterogeneous
